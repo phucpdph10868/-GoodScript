@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="myCheck1" type="checkbox" onclick="myFunction1()"><label id="pro1" data-price="1000">1000</label><br>
+    <input id="myCheck2" type="checkbox" onclick="myFunction2()"><label id="pro2" data-price="2000">2000</label><br>
+    <input id="myCheck3" type="checkbox" onclick="myFunction3()"><label id="pro3" data-price="3000">3000</label><br>
+    
+    <hr style="width: 250px; position: relative; left: -635px; border: 1px solid #cccc;">
+
+    <h3>Amount: <span id="amount">?</span> $</h3>
+    <h3>Thêm <span id="count">?</span> vào giỏ hàng</h3>
+
+    <script>
+        var sum = 0;
+        var count = 0;
+            var text = document.getElementById('amount');
+            var countText = document.getElementById('count');
+        //function 1
+        function myFunction1() {
+            var checkBox = document.getElementById('myCheck1');
+            var price = Number(document.getElementById('pro1').attributes[1].nodeValue);
+
+            if(checkBox.checked == true) {
+                sum = sum + price;
+                text.innerText = sum;
+                count = count + 1;
+                countText.innerText = count;
+                
+            } else {
+                sum = sum - price;
+                text.innerText = sum;
+                count = count - 1;
+                countText.innerText = count;
+            }
+        }
+        //end
+        //function 1
+        function myFunction2() {
+            var checkBox = document.getElementById('myCheck2');
+            var price = Number(document.getElementById('pro2').attributes[1].nodeValue);
+
+            if(checkBox.checked == true) {
+                sum = sum + price;
+                text.innerText = sum;
+                count = count + 1;
+                countText.innerText = count;
+            } else {
+                sum = sum - price;
+                text.innerText = sum;
+                count = count - 1;
+                countText.innerText = count;
+            }
+        }
+        //end
+        //function 1
+        function myFunction3() {
+            var checkBox = document.getElementById('myCheck3');
+            var price = Number(document.getElementById('pro3').attributes[1].nodeValue);
+
+            if(checkBox.checked == true) {
+                sum = sum + price;
+                text.innerText = sum;
+                count = count + 1;
+                countText.innerText = count;
+            } else {
+                sum = sum - price;
+                text.innerText = sum;
+                count = count - 1;
+                countText.innerText = count;
+            }
+        }
+        //end
+    </script>
+</body>
+</html>
