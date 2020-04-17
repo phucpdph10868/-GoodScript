@@ -6,70 +6,72 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Gian hàng -->
-    <table border="1">
-        <tr>
-            <td>iPhone9</td>
-            <td>$2700</td>
-            <td><button type="button" onclick="them(this)">Thêm</button></td>
-        </tr>
-    </table>
-    <table border="1">
-        <tr>
-            <td>iPhone8</td>
-            <td>$2100</td>
-            <td><button type="button" onclick="them(this)">Thêm</button></td>
-        </tr>
-    </table>
-    <table border="1">
+    <!-- html -->
+    <table border="1px">
         <tr>
             <td>iPhone7</td>
+            <td>$1700</td>
+            <td><button onclick = 'them(this)' >Thêm</button></td>
+        </tr>
+        <tr>
+            <td>iPhone8</td>
+            <td>$1800</td>
+            <td><button onclick = 'them(this)' >Thêm</button></td>
+        </tr>
+        <tr>
+            <td>iPhone9</td>
             <td>$1900</td>
-            <td><button type="button" onclick="them(this)">Thêm</button></td>
+            <td><button onclick = 'them(this)' >Thêm</button></td>
         </tr>
     </table>
+    <h3 id="empty">Giỏ hàng của bạn đang trống</h3>
+    <div id="not-empty" style="display: none;" >
+        <h3>Giỏ hàng của bạn</h3>
+        <table id="cart" border="1"></table>
+        <h3>Tổng số tiền: $<span id="sum">0</span></h3>
+    </div>
 
-    <!-- Giỏ hàng -->
-    <h3>Giỏ hàng của bạn</h3>
-    <table border="1" id="cart"></table>
-    <h3>Tổng số tiền: $<span id="tong">0</span></h3>
-
-    <!-- javascript -->
+    <!-- script -->
     <script>
-
         //tong()
-        function tong() {
+        
+        function tong() { 
+            var tong = 0;  
             var cart = document.getElementById('cart');
             var rows = cart.getElementsByTagName('tr');
-            var tong = 0;
-            for (var i = 0; i< rows.length; i++) {
-                var cells = rows[i].getElementsByTagName('td');
-                var price = Number(cells[1].innerText.substr(1));
-                tong += price;
-            }
-            document.getElementById('tong').innerText = tong;
             
+            for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName('td');
+                var price = cells[1].innerText.substr(1);
+                tong += Number(price);
+            }
+            document.getElementById('sum').innerText = tong;
+            // display
+            if(tong !== 0) {
+                document.getElementById('empty').style.display = 'none';
+                document.getElementById('not-empty').style.display = '';
+            } else {
+                document.getElementById('empty').style.display = '';
+                document.getElementById('not-empty').style.display = 'none';
+            }
         }
-
-        //them()
+        
+        // them()
         function them(button) {
             var row = button.parentElement.parentElement.cloneNode(true);
             var btnXoa = row.getElementsByTagName('button')[0];
-            btnXoa.innerText = 'Xóa';
-            btnXoa.setAttribute('onclick','xoa(this)');
-            document.getElementById("cart").appendChild(row);
+                btnXoa.innerText = 'Xóa';
+                btnXoa.setAttribute('onclick','xoa(this)')
+            document.getElementById('cart').appendChild(row);
             tong();
         }
-
-        //xoa(this)
+        // Xoa(this)
         function xoa(button) {
             var row = button.parentElement.parentElement;
             document.getElementById('cart').removeChild(row);
             tong();
         }
-
-        
     </script>
-
+    
 </body>
 </html>
